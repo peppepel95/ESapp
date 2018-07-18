@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+    <ion-card *ngIf="showInputHideProfile">
+      <img src="profile1.jpg"/>
+      <ion-input class="name" type="text" placeholder="Name" [(ngModel)]="name"></ion-input>
+      <ion-input class="weight" type="text" placeholder="Weight" [(ngModel)]="weight"></ion-input>
+      <button color="light" ion-button icon-start round (click)="onSaveProfile($event)">
+        <ion-icon name="ios-arrow-dropdown-outline"></ion-icon>
+      </button>
+    </ion-card>
+    
+    <ion-card *ngIf="!showInputHideProfile">
+      <ion-item>
+        <button color="light" ion-button icon-start round (click)="onModProfile($event)">
+          <ion-icon name="ios-arrow-dropup-outline"></ion-icon>
+        </button>
+        <ion-avatar item-start>
+          <img src="profile2.jpg">
+        </ion-avatar>
+        <h2>{{name}}</h2>
+        <p>{{weight}} Kg</p>
+      </ion-item>
+    </ion-card>
+</ion-content>

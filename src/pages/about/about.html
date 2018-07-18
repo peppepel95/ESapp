@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>HEATMAP</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button *ngIf="!hideBt" round (click)="onClickLog($event)">Start Heatmap</button>
+  <ion-list *ngIf="hideText">
+    <ion-item>
+      <ion-input type="number" placeholder="Minutes" [(ngModel)]="minutes"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button icon-start (click)="onSendMinutes($event)">
+      <ion-icon name="md-alarm"></ion-icon>
+        Send
+      </button>
+    </ion-item>
+  </ion-list>
+  <ion-card>
+  <ion-card-content *ngIf="showLab">
+    Heatmap degli utlimi {{minutes}} minuti
+  </ion-card-content>
+
+</ion-card>
+  <div class="heatmap" #heatmap [ngStyle]="{height: '100%'}"></div>
+</ion-content>
