@@ -6,24 +6,54 @@
 
 <ion-content class="card-background-page">
     <ion-card *ngIf="showInputHideProfile">
-      <img src="profile1.jpg"/>
+      <img src="Profile/profile1.jpg"/>
       <ion-input class="name" type="text" placeholder="Name" [(ngModel)]="name"></ion-input>
-      <ion-input class="weight" type="text" placeholder="Weight" [(ngModel)]="weight"></ion-input>
-      <button color="light" ion-button icon-start round (click)="onSaveProfile($event)">
-        <ion-icon name="ios-arrow-dropdown-outline"></ion-icon>
+      <ion-input class="weight" type="number" placeholder="Weight" [(ngModel)]="weight"></ion-input>
+      <ion-fab right top>
+      <button ion-fab (click)="onSaveProfile($event)">
+        <ion-icon name="md-done-all"></ion-icon>
       </button>
+      </ion-fab>
     </ion-card>
     
     <ion-card *ngIf="!showInputHideProfile">
       <ion-item>
-        <button color="light" ion-button icon-start round (click)="onModProfile($event)">
-          <ion-icon name="ios-arrow-dropup-outline"></ion-icon>
+        <ion-fab right top>
+        <button ion-fab (click)="onModProfile($event)">
+          <ion-icon name="md-create"></ion-icon>
         </button>
+        </ion-fab>
         <ion-avatar item-start>
-          <img src="profile2.jpg">
+          <img src="Profile/profile2.jpg">
         </ion-avatar>
         <h2>{{name}}</h2>
         <p>{{weight}} Kg</p>
       </ion-item>
+    </ion-card>
+    
+    <ion-card *ngIf="showImage">
+      <ion-card-header>
+        <h1>Sitting Info</h1>
+      </ion-card-header>
+      <ion-fab right top>
+        <button ion-fab (click)="onChangeVisual($event)">
+          <ion-icon name="md-text" ></ion-icon>
+        </button>
+      </ion-fab>
+      <img [src]="image"/>
+    </ion-card>
+    
+    <ion-card *ngIf="!showImage">
+      <ion-card-header>
+        <h1>Sitting Info</h1>
+      </ion-card-header>
+      <ion-fab right top>
+        <button ion-fab (click)="onChangeVisual($event)">
+          <ion-icon name="md-image"></ion-icon>
+        </button>
+      </ion-fab>
+      <div>{{message1}}</div>
+      <div>{{message2}}</div>
+      <div>{{message3}}</div>
     </ion-card>
 </ion-content>

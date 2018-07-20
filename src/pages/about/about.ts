@@ -50,9 +50,8 @@ export class AboutPage implements AfterViewInit {
   }
   
   generateRandomData(maxX, maxY, v): any{
-    //console.log(this.service.Values);
-      var max = 1500;
-      var min =  500;
+      var max = 177;
+      var min =  0;
       var data = [];
         data.push({
           x: ((0.25 * maxY) >> 0),

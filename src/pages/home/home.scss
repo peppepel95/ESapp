@@ -6,7 +6,7 @@ page-home {
     }
     .name {
       position: absolute;
-      top: 10%;
+      top: 35%;
       left: 50%;
       text-align: left;
       font-size: 2.0em;
@@ -16,12 +16,16 @@ page-home {
 
     .weight {
       position: absolute;
-      top: 30%;
+      top: 60%;
       left: 50%;
       font-size: 2.0em;
       width: 60%;
       font-weight: bold;
     }
+  }
+  ion-card-header {
+    font-size: 2.0em;
+    font-weight: bold;
   }
 }
 
