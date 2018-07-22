@@ -45,15 +45,19 @@
     
     <ion-card *ngIf="!showImage">
       <ion-card-header>
-        <h1>Sitting Info</h1>
+        <h1>SITTING INFO</h1>
       </ion-card-header>
       <ion-fab right top>
         <button ion-fab (click)="onChangeVisual($event)">
           <ion-icon name="md-image"></ion-icon>
         </button>
       </ion-fab>
-      <div>{{message1}}</div>
-      <div>{{message2}}</div>
-      <div>{{message3}}</div>
+      <h1><ion-label color="danger">{{message1}}</ion-label></h1>
+      <h1><ion-label color="giallo">{{message2}}</ion-label></h1>
+      <h1><ion-label color="secondary">{{message3}}</ion-label></h1>
+      <h1><ion-label color="danger">{{message4}}</ion-label></h1>
+      <h1><ion-label color="secondary">{{message5}}</ion-label></h1>
+      <h1><ion-label color="danger">{{message6}}</ion-label></h1>
+      <h1><ion-label color="secondary">{{message7}}</ion-label></h1>
     </ion-card>
 </ion-content>

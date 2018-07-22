@@ -4,11 +4,13 @@ import { BLE } from '@ionic-native/ble';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Location } from '@angular/common';
 import { Service } from '../../app/service';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
   private devices: any;
   private conn: any;
@@ -22,22 +24,27 @@ export class HomePage {
   public showInputHideProfile: boolean = true;
   public DEF_STR = "imagePosition/imageChair";
   public DEF_EXT = ".png";
-  public image = "imagePosition/imageChair111.png";
+  public image = "imagePosition/imageChair.png";
   public str: string = "";
   public message1: string = "";
   public message2: string = "";
   public message3: string = "";
+  public message4: string = "";
+  public message5: string = "";
+  public message6: string = "";
+  public message7: string = "";
   public showImage: boolean = true;
   
-  constructor(public navCtrl: NavController, private ble: BLE, private location: Location, private androidPermissions: AndroidPermissions, public service: Service) {
-    androidPermissions.checkPermission(androidPermissions.PERMISSION.BLUETOOTH).then(
+  constructor(public navCtrl: NavController, private ble: BLE, private location: Location, private androidPermissions: AndroidPermissions, public service: Service, public alertCtrl: AlertController) {
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.BLUETOOTH).then(
     success => {console.log('Permission granted');},
-    err => androidPermissions.requestPermissions(androidPermissions.PERMISSION.BLUETOOTH)
+    err => this.androidPermissions.requestPermissions(this.androidPermissions.PERMISSION.BLUETOOTH)
     );
-    androidPermissions.checkPermission(androidPermissions.PERMISSION.BLUETOOTH_ADMIN).then(
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.BLUETOOTH_ADMIN).then(
     success => {console.log('Permission granted');},
-    err => androidPermissions.requestPermissions(androidPermissions.PERMISSION.BLUETOOTH_ADMIN)
+    err => this.androidPermissions.requestPermissions(this.androidPermissions.PERMISSION.BLUETOOTH_ADMIN)
     );
+    
       this.devices = this.ble.startScan([]);
       console.log(this.devices);
       console.log('List of devices');
@@ -53,6 +60,7 @@ export class HomePage {
            this.conn.subscribe((data) => {
             console.log(JSON.stringify(data));
             console.log("connesso");
+            this.showAlert("Connessione BT stabilita!");
             this.serviceUUID = data.services;
             this.characteristicUUID = data.characteristics;
             console.log(data.services);
@@ -83,7 +91,15 @@ export class HomePage {
             });
         }
        });
-      this.showMessage([1, 0, 0]);
+      this.showMessage([3, 1, 1]);
+  }
+  
+  showAlert(str: string) {
+    const alert = this.alertCtrl.create({
+      title: str,
+      buttons: ['OK']
+    });
+    alert.present();
   }
   
   onClickSend(): void {
@@ -122,26 +138,36 @@ export class HomePage {
   
   showMessage(position: any): void {
     var x = position[0], y = position[1], z = position[2];
-    var msg1 = "", msg2 = "", msg3 = "";
+    var msg1 = "", msg2 = "", msg3 = "", msg4 = "", msg5 = "", msg6 = "", msg7 = "";
     
     if (x == 0) {
       msg1 = "Sei seduto in modo scorretto!";
     }
     else if (x == 1) {
-      msg1 = "Disponi meglio il tuo peso";
+      msg2 = "Disponi meglio il tuo peso";
     }
     else {
-      msg1 = "Continua così!";
+      msg3 = "Continua così!";
     }
     if (y == 0) {
-      msg2 = "Distendi le gambe";
+      msg4 = "Distendi le gambe";
+    }
+    else {
+      msg5 = "Gambe disposte bene";
     }
     if (z == 0) {
-      msg3 = "Non poggiare la schiena";
+      msg6 = "Non poggiare la schiena";
+    }
+    else {
+      msg7 = "Schiena distante";
     }
     this.message1 = msg1;
     this.message2 = msg2;
     this.message3 = msg3;
+    this.message4 = msg4;
+    this.message5 = msg5;
+    this.message6 = msg6;
+    this.message7 = msg7;
   }
   
   onChangeVisual(): void {
